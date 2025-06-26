@@ -1,12 +1,8 @@
 function toggleOptionsMenu() {
         const menu = document.getElementById('options-menu');
         if (menu) {
-            if (menu.style.display == 'flex') {
-                menu.style.display = 'none';
-            }
-            else {
-                menu.style.display = 'flex';
-            }
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('visible');
         }
     }
 

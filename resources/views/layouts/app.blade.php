@@ -53,7 +53,7 @@
                 </div>
             </nav>
             @auth
-            <div id="options-menu">
+            <div id="options-menu" class="options-menu-transform hidden">
                 @if(Auth::user()->admin)
                 <a class="options-link" href="{{route('admin.index')}}">Admin</a>
                 @endif

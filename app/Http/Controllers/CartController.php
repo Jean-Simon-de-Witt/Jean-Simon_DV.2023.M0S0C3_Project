@@ -22,12 +22,38 @@ class CartController extends Controller
         
         $copies = Copy::where('cart_id', $cart->id)->get();
         $listings = [];
+        $totals = ['count' => 0, 'sum' => 0];
 
         foreach($copies as $copy) {
-            $listings[] = Listing::where('id', $copy->listing_id)->first();
+            $duplicate = false;
+            $index = 0;
+            for($i = 0; $i < count($listings); $i++ ) {
+                if ($copy->listing_id === $listings[$i]['listing']->id) {
+                    $duplicate = true;
+                    $index = $i;
+                    break;
+                }
+            }
+            if ($duplicate) {
+                $listings[$index]['quantity'] += 1;
+                $totals['count'] += 1;
+                $totals['sum'] += $listings[$index]['listing']->price;
+            }
+            else {
+                try {
+                    $listing = Listing::findOrFail($copy->listing_id);
+                }
+                catch (ModelNotFoundException $e) {
+                    abort(404, "404 | Listing with ID '$id' not found.");
+                }
+                $listings[] = ['listing' => $listing, 'quantity' => 1];
+                $totals['count'] += 1;
+                $totals['sum'] += $listing->price;
+            }
+            
         }
 
-        return view('user.cart', ['cart' => $cart, 'user' => $user, 'listings' => $listings, 'view' => 'user.cart']);
+        return view('user.cart', ['cart' => $cart, 'user' => $user, 'listings' => $listings, 'totals' => $totals, 'view' => 'user.cart']);
     }
 
     public function add($id, $copy_id) {

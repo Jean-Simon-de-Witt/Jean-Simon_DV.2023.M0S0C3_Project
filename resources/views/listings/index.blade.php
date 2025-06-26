@@ -8,7 +8,7 @@
             <img class="icon" src="{{ asset('uploads/menu-white.svg')}}">
         </div>
         <form method="GET" action="{{route('listings.index')}}">
-            <div class="sorting-menu">
+            <div class="sorting-menu sorting-menu-transition hidden">
                 @csrf
                 <div class="sorting-section">
                     <label class="sorting-label" for="sort1">Sort 1</label>
