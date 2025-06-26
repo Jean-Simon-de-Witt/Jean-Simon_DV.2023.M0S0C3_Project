@@ -25,7 +25,11 @@
         <p class="record-field">Updated At: {{$listing->updated_at}}</p>
         <div class="record-actions">
             <a class="record-action" href="{{ route('admin.listing.edit', ['id' => $listing->id]) }}">Edit</a>
-            <a class="record-action">Delete</a>
+            <form action="{{ route('admin.listing.destroy', ['id' => $listing->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="record-action" type="submit">Delete</button>
+            </form>
             <a class="record-action" href="{{ route('admin.listings') }}">Back</a>
         </div>
     </div>

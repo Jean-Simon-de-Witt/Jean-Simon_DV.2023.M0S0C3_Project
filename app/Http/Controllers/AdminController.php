@@ -75,6 +75,18 @@ class AdminController extends Controller
         return redirect(route('admin.user.show', ['id' => $user->id]));
     }
 
+    public function destroyUser($id) {
+        try {
+            $user = User::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | User with ID '$id' not found.");
+        }
+
+        $user->delete();
+        return redirect(route('admin.users'));
+    } 
+
     public function listings() {
         $listings = Listing::all();
         return view('admin.listings', ['listings' => $listings, 'view' => 'admin.listings']);
@@ -124,5 +136,17 @@ class AdminController extends Controller
         $listing->user_id = $request->user_id;
         $listing->save();
         return redirect(route('admin.listing.show', ['id' => $listing->id]));
+    }
+
+    public function destroyListing($id) {
+        try {
+            $listing = Listing::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Listing with ID '$id' not found.");
+        }
+
+        $listing->delete();
+        return redirect(route('admin.listings'));
     }
 }

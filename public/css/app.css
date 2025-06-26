@@ -289,10 +289,11 @@ nav {
     grid-template-rows:auto max-content max-content;
     border-radius: 0.5rem;
     box-shadow: 0.15rem 0.15rem rgba(0, 0, 0, 0.2);
-    width:fit-content;
+    width:280px;
     background-color: white;
     margin:0.5rem;
     position:relative;
+    overflow:hidden;
 
 }
 

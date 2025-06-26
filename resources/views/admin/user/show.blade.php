@@ -28,7 +28,11 @@
         <p class="record-field">Updated At: {{$user->updated_at}}</p>
         <div class="record-actions">
             <a class="record-action" href="{{ route('admin.user.edit', ['id' => $user->id]) }}">Edit</a>
-            <a class="record-action">Delete</a>
+            <form action="{{ route('admin.user.destroy', ['id' => $user->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="record-action" type="submit">Delete</button>
+            </form>
             <a class="record-action" href="{{ route('admin.users') }}">Back</a>
         </div>
     </div>

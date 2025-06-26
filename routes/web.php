@@ -28,10 +28,12 @@ Route::get('/admin/users', [AdminController::class, 'users'])->middleware(['auth
 Route::get('/admin/users/{id}', [AdminController::class, 'showUser'])->middleware(['auth', 'admin'])->name('admin.user.show');
 Route::get('/admin/users/{id}/edit', [AdminController::class, 'editUser'])->middleware(['auth', 'admin'])->name('admin.user.edit');
 Route::put('/admin/users/{id}/edit', [AdminController::class, 'updateUser'])->middleware(['auth', 'admin'])->name('admin.user.edit');
+Route::delete('/admin/users/{id}', [AdminController::class, 'destroyUser'])->middleware(['auth', 'admin'])->name('admin.user.destroy');
 Route::get('/admin/listings', [AdminController::class, 'listings'])->middleware(['auth', 'admin'])->name('admin.listings');
 Route::get('/admin/listings/{id}', [AdminController::class, 'showListing'])->middleware(['auth', 'admin'])->name('admin.listing.show');
 Route::get('/admin/listings/{id}/edit', [AdminController::class, 'editListing'])->middleware(['auth', 'admin'])->name('admin.listing.edit');
 Route::put('/admin/listings/{id}/edit', [AdminController::class, 'updateListing'])->middleware(['auth', 'admin'])->name('admin.listing.edit');
+Route::delete('/admin/listings/{id}', [AdminController::class, 'destroyListing'])->middleware(['auth', 'admin'])->name('admin.listing.destroy');
 
 Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');
 Route::get('/listings/create', [ListingController::class, 'create'])->middleware(['auth', 'merchant'])->name('listings.create');
