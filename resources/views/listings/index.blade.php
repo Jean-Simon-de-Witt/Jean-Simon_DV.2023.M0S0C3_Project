@@ -65,7 +65,7 @@
     <div id="listings">
         @forelse($listings as $listing)
             <div class="listing">
-                <a class="image-link" href="/listings/{{$listing->id}}"><img class="listing-image"src="{{$listing->image}}"></a>
+                <a class="image-link" href="/listings/{{$listing->id}}"><img class="listing-image"src="{{ asset('storage/' . $listing->image) }}"></a>
                 <p class="listing-name">{{$listing->name}}</p>
                 <p class="listing-price">{{'R' . $listing->price}}</p>
                 <div class="listing-rating">@for($i = 0; $i < 5; $i++) @if($i < $listing->rating) <img class="icon" src="{{asset('uploads/star-rated-bright.svg')}}"> @else <img class="icon" src="{{asset('uploads/star-bright.svg')}}"> @endif @endfor</div>

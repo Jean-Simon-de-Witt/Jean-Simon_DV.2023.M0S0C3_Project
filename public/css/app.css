@@ -568,10 +568,12 @@ nav {
     font-size:1rem;
     margin-top:0.5rem;
     margin-inline:0.5rem;
-    width:600px;
+    width:fit-content;
+    max-width:600px;
     padding:0.25rem;
     background-color:#cccccc;
     border-radius: 0.5rem;
+    word-wrap:break-word;
     color:var(--text-color-bright);
 }
 
