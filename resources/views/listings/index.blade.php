@@ -8,8 +8,8 @@
             <img class="icon" src="{{ asset('uploads/menu-white.svg')}}">
         </div>
         <form method="GET" action="{{route('listings.index')}}">
-            <div class="sorting-menu sorting-menu-transition hidden">
-                @csrf
+            @csrf
+            <div class="sorting-menu">
                 <div class="sorting-section">
                     <label class="sorting-label" for="sort1">Sort 1</label>
                     <select class="sorting-field" name="sort1" id="sort1">
@@ -55,10 +55,10 @@
                 <div class="sorting-section">
                     <button class="sorting-button" type="submit">Apply</button>
                 </div>
-                @if(!empty($oldValues['search']))
-                <input type="hidden" name="search" id="search" value="{{$oldValues['search']}}">
-                @endif
             </div>
+            @if(!empty($oldValues['search']))
+                <input type="hidden" name="search" id="search" value="{{$oldValues['search']}}">
+            @endif
         </form>
     </div>
     <p class="page-title">@if(!empty($title)){{ $title }} @else Recent Listings @endif </p>

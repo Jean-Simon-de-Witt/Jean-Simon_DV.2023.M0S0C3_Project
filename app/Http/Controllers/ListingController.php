@@ -102,7 +102,7 @@ class ListingController extends Controller
                 } 
             }
         }
-        $listings = Listing::fromQuery($query, $values)->all();
+        $listings = Listing::fromQuery($query, $values);
         
         return view('listings.index', ['listings' => $listings, 'oldValues' => $oldValues, 'title' => $title, 'view' => 'listings.index']);
     }

@@ -70,7 +70,7 @@
             @yield('content')
         </div>
         <div id="footer">
-            <p>footer</p>
+            <p class="footer-text">Creator: Jean-Simon de Witt (DV.2023.M0S0C3)</p>
         </div>
     </body>
 </html>
