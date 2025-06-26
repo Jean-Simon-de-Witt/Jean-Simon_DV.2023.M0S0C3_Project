@@ -7,7 +7,7 @@
         <img class="show-listing-image" src="{{ asset('storage/' . $listing->image) }}">
         <p class="show-listing-name">{{ $listing->name }}</p>
         <p class="show-listing-price">{{'R' . $listing->price }}</p>
-        <a class="show-listing-merchant" href="{{route('user.profile.merchant.show', ['id' => $merchant->id])}}">@if($merchant->merchant_profile_picture)<img class="show-listing-profile" src="{{asset('storage/' . $merchant->merchant_profile_picture)}}">@else<img class="show-listing-profile" src="{{asset('uploads/profile.png')}}">@endif {{$merchant->merchant_name}}</a>
+        <a class="show-listing-merchant" href="{{route('user.profile.merchant.show', ['id' => $merchant->id])}}">@if($merchant->merchant_profile_picture)<img class="show-listing-profile" src="{{asset('storage/' . $merchant->merchant_profile_picture)}}">@else<img class="show-listing-profile" src="{{asset('uploads/profile-grey.svg')}}">@endif {{$merchant->merchant_name}}</a>
         <div class="show-listing-rating">@for($i = 0; $i < 5; $i++) @if($i < $listing->rating) <img class="icon" src="{{asset('uploads/star-rated-bright.svg')}}"> @else <img class="icon" src="{{asset('uploads/star-bright.svg')}}"> @endif @endfor <p class="show-rating-number">({{ $ratings_count }})</p></div>
         <p class="show-listing-category">{{$listing->category}}</p>
         <p class="show-listing-description">{{ $listing->description }}</p>
@@ -28,7 +28,7 @@
             @endif   
                 @forelse($reviews as $review) 
                     <div class="review">
-                        <a class="review-author" href="{{ route('user.profile.show', ['id' => $review['author']->id])}}">@if($review['author']->profile_picture)<img class="review-profile" src="{{asset('storage/' . $review['author']->profile_picture)}}">@else<img class="review-profile" src="{{asset('uploads/profile.png')}}">@endif {{$review['author']->name . ' ' . $review['author']->surname}}</a>
+                        <a class="review-author" href="{{ route('user.profile.show', ['id' => $review['author']->id])}}">@if($review['author']->profile_picture)<img class="review-profile" src="{{asset('storage/' . $review['author']->profile_picture)}}">@else<img class="review-profile" src="{{asset('uploads/profile-grey.svg')}}">@endif {{$review['author']->name . ' ' . $review['author']->surname}}</a>
                         <p class="review-score">{{$review['score']}}</p>
                         <p class="review-content">{{$review['review']}}</p>
                     </div>
@@ -41,7 +41,7 @@
             <p class="review-title">Reviews</p>
             @forelse($reviews as $review) 
                     <div class="review">
-                        <a class="review-author" href="{{ route('user.profile.show', ['id' => $review['author']->id])}}">@if($review['author']->profile_picture)<img class="review-profile" src="{{asset('storage/' . $review['author']->profile_picture)}}">@else<img class="review-profile" src="{{asset('uploads/profile.png')}}">@endif {{$review['author']->name . ' ' . $review['author']->surname}}</a>
+                        <a class="review-author" href="{{ route('user.profile.show', ['id' => $review['author']->id])}}">@if($review['author']->profile_picture)<img class="review-profile" src="{{asset('storage/' . $review['author']->profile_picture)}}">@else<img class="review-profile" src="{{asset('uploads/profile-grey.svg')}}">@endif {{$review['author']->name . ' ' . $review['author']->surname}}</a>
                         <p class="review-score">{{$review['score']}}</p>
                         <p class="review-content">{{$review['review']}}</p>
                     </div>

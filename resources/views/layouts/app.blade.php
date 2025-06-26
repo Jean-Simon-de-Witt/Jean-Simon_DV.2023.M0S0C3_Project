@@ -36,21 +36,24 @@
                     <div></div>
                 @endif
                 
-                <div id="profile">
-                    @auth
+                @auth
+                    <div id="profile-auth">
                         <a class="nav-link">Welcome, {{ Auth::user()->name }}</a>
                         @if(Auth::user()->profile_picture)
                             <img id="profile-picture-link" src="{{ asset('storage/' . Auth::user()->profile_picture) }}">
                         @else
-                            <img id="profile-picture-link" src="{{ asset('uploads/profile.png') }}">
+                            <img id="profile-picture-link" src="{{ asset('uploads/profile-white.svg') }}">
                         @endif
-                    @endauth
-                    @guest
+                    </div>
+                @endauth
+                @guest
+                    <div id="profile">
                         <a class="nav-link" href="{{route('auth.login')}}"><img class="icon" src="{{ asset('uploads/login-white.svg') }}">Login</a>
                         <a class="nav-link" href="{{route('auth.register')}}"><img class="icon" src="{{ asset('uploads/registration-white.svg') }}">Sign Up</a>
-                        <img id="profile-picture" src="{{ asset('uploads/profile.png') }}">
-                    @endguest
-                </div>
+                        <img id="profile-picture" src="{{ asset('uploads/profile-white.svg') }}">
+                    </div>
+                @endguest
+                
             </nav>
             @auth
             <div id="options-menu" class="options-menu-transform hidden">

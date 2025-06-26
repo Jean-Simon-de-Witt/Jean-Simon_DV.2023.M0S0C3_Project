@@ -18,6 +18,7 @@ return new class extends Migration
             $table->double('price');
             $table->string('category');
             $table->string('image');
+            $table->integer('rating')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

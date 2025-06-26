@@ -46,7 +46,7 @@ class ListingController extends Controller
                 $oldValues['sort1'] = $request->sort1;
                 $oldValues['order1'] = $request->order1;
                 if ($request->sort1 === 'date') {
-                    $query = $query . " ORDER BY DATE(listings." . "created_at" . ") " . $request->order1;
+                    $query = $query . " ORDER BY listings." . "created_at" . " " . $request->order1;
                 }
                 else {
                     $query = $query . " ORDER BY listings." . $request->sort1 . " " . $request->order1;
@@ -60,7 +60,7 @@ class ListingController extends Controller
                 if ($subsequent) {
                     $title = $title . ", " . $request->sort2;
                     if ($request->sort2 === 'date') {
-                        $query = $query . ", DATE(listings." . "created_at" . ") " . $request->order2;
+                        $query = $query . ", listings." . "created_at" . " " . $request->order2;
                     }
                     else {
                         $query = $query . ", listings." . $request->sort2 . " " . $request->order2;
@@ -69,10 +69,10 @@ class ListingController extends Controller
                 else {
                     $title = $title . 'Sorted by: ' . $request->sort2;
                     if ($request->sort2 === 'date') {
-                        $query = $query . "ORDER BY DATE(listings." . "created_at" . ") " . $request->order2;
+                        $query = $query . " ORDER BY listings." . "created_at" . " " . $request->order2;
                     }
                     else {
-                        $query = $query . "ORDER BY listings." . $request->sort2 . " " . $request->order2;
+                        $query = $query . " ORDER BY listings." . $request->sort2 . " " . $request->order2;
                     }
                     $subsequent = true;
                 }
@@ -84,7 +84,7 @@ class ListingController extends Controller
                 if ($subsequent) {
                     $title = $title . ", " . $request->sort3;
                     if ($request->sort3 === 'date') {
-                        $query = $query . ", DATE(listings." . "created_at" . ") " . $request->order3;
+                        $query = $query . ", listings." . "created_at" . " " . $request->order3;
                     }
                     else {
                         $query = $query . ", listings." . $request->sort3 . " " . $request->order3;
@@ -93,10 +93,10 @@ class ListingController extends Controller
                 else {
                     $title = $title . 'Sorted by: ' . $request->sort3;
                     if ($request->sort3 === 'date') {
-                        $query = $query . "ORDER BY DATE(listings." . "created_at" . ") " . $request->order3;
+                        $query = $query . " ORDER BY listings." . "created_at" . " " . $request->order3;
                     }
                     else {
-                        $query = $query . "ORDER BY listings." . $request->sort3 . " " . $request->order3;
+                        $query = $query . " ORDER BY listings." . $request->sort3 . " " . $request->order3;
                     }
                     $subsequent = true;
                 } 

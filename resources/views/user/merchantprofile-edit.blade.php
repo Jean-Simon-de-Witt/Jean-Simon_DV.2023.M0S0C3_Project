@@ -8,7 +8,7 @@
         @if ($user->merchant_profile_picture)
         <img class="profile-image" src="{{asset('storage/' . $user->merchant_profile_picture)}}">
     @else
-        <img class="profile-image" src="{{asset('uploads/profile.png')}}">
+        <img class="profile-image" src="{{asset('uploads/profile-grey.svg')}}">
     @endif
     <form action="{{ route('user.profile.merchant.update', ['id' => $user->id])}}" method="POST" enctype="multipart/form-data">
         @csrf

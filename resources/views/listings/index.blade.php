@@ -71,7 +71,7 @@
                 <div class="listing-rating">@for($i = 0; $i < 5; $i++) @if($i < $listing->rating) <img class="icon" src="{{asset('uploads/star-rated-bright.svg')}}"> @else <img class="icon" src="{{asset('uploads/star-bright.svg')}}"> @endif @endfor</div>
             </div>
         @empty
-            <p>no listings</p>
+            <p class="listing-name">No listings</p>
         @endforelse
     </div>
 @endsection

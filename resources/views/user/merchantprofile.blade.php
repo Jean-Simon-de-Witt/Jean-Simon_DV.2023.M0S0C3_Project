@@ -27,7 +27,7 @@
                     @if ($user->merchant_profile_picture)
                         <img class="profile-image" src="{{asset('storage/' . $user->merchant_profile_picture)}}">
                     @else
-                        <img class="profile-image" src="{{asset('uploads/profile.png')}}">
+                        <img class="profile-image" src="{{asset('uploads/profile-grey.svg')}}">
                     @endif
                 </div>
             @elseif(Auth::user()->id === $user->id)
@@ -36,7 +36,7 @@
                     @if ($user->merchant_profile_picture)
                         <img class="profile-image" src="{{asset('storage/' . $user->merchant_profile_picture)}}">
                     @else
-                        <img class="profile-image" src="{{asset('uploads/profile.png')}}">
+                        <img class="profile-image" src="{{asset('uploads/profile-grey.svg')}}">
                     @endif
                     <p class="profile-field">Merchant Name: {{$user->merchant_name}}</p>
                     <a class="profile-button-edit" href="{{route('user.profile.show', ['id' => $user])}}">Switch to Personal Profile</a>
@@ -47,7 +47,7 @@
                     @if ($user->merchant_profile_picture)
                         <img class="profile-image" src="{{asset('storage/' . $user->merchant_profile_picture)}}">
                     @else
-                        <img class="profile-image" src="{{asset('uploads/profile.png')}}">
+                        <img class="profile-image" src="{{asset('uploads/profile-grey.svg')}}">
                     @endif
                 </div>
             @endif

@@ -15,7 +15,7 @@
             @if ($user->profile_picture)
                 <img class="profile-image" src="{{asset('storage/' . $user->profile_picture)}}">
             @else
-                <img class="profile-image" src="{{asset('uploads/profile.png')}}">
+                <img class="profile-image" src="{{asset('uploads/profile-grey.svg')}}">
             @endif
         </div>
     @elseif(Auth::user()->id === $user->id)
@@ -24,7 +24,7 @@
             @if ($user->profile_picture)
                 <img class="profile-image" src="{{asset('storage/' . $user->profile_picture)}}">
             @else
-                <img class="profile-image" src="{{asset('uploads/profile.png')}}">
+                <img class="profile-image" src="{{asset('uploads/profile-grey.svg')}}">
             @endif
             <p class="profile-field">Name: {{$user->name}}</p>
             <p class="profile-field">Surname: {{$user->surname}}</p>
@@ -36,7 +36,7 @@
             @if ($user->profile_picture)
                 <img class="profile-image" src="{{asset('storage/' . $user->profile_picture)}}">
             @else
-                <img class="profile-image" src="{{asset('uploads/profile.png')}}">
+                <img class="profile-image" src="{{asset('uploads/profile-grey.svg')}}">
             @endif
         </div>
     @endif 
