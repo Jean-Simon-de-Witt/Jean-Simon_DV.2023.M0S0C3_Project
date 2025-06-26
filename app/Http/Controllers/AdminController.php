@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Listing;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AdminController extends Controller
 {
@@ -18,12 +19,23 @@ class AdminController extends Controller
     }
 
     public function showUser($id) {
-        $user = User::findOrFail($id);
+        try {
+            $user = User::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | User with ID '$id' not found.");
+        }
         return view('admin.user.show', ['user' => $user, 'view' => 'admin.user.show']);
     }
 
     public function editUser($id) {
-        $user = User::findOrFail($id);
+        try {
+            $user = User::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | User with ID '$id' not found.");
+        }
+        
         return view('admin.user.edit', ['user' => $user, 'view' => 'admin.user.edit']);
     }
 
@@ -35,8 +47,13 @@ class AdminController extends Controller
             'merchant' => 'nullable|boolean',
             'admin' => 'nullable|boolean'
         ]);
-
-        $user = User::findOrFail($id);
+        try {
+            $user = User::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | User with ID '$id' not found.");
+        }
+        
 
         $user->name = $request->name;
         $user->surname = $request->surname;
@@ -64,12 +81,24 @@ class AdminController extends Controller
     }
 
     public function showListing($id) {
-        $listing = Listing::findOrFail($id);
+        try {
+            $listing = Listing::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Listing with ID '$id' not found.");
+        }
+        
         return view('admin.listing.show', ['listing' => $listing, 'view' => 'admin.listing.show']);
     }
 
     public function editListing($id) {
-        $listing = Listing::findOrFail($id);
+        try {
+            $listing = Listing::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Listing with ID '$id' not found.");
+        }
+        
         return view('admin.listing.edit', ['listing' => $listing, 'view' => 'admin.listing.edit']);
     }
 
@@ -81,8 +110,13 @@ class AdminController extends Controller
             'category' => 'required|string|max:255',
             'user_id' => 'required|numeric|min:1'
         ]);
-
-        $listing = Listing::findOrFail($id);
+        try {
+            $listing = Listing::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Listing with ID '$id' not found.");
+        }
+        
         $listing->name = $request->name;
         $listing->description = $request->description;
         $listing->price = $request->price;

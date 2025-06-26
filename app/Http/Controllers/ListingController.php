@@ -114,7 +114,13 @@ class ListingController extends Controller
         catch (ModelNotFoundException $e) {
             abort(404, "404 | Listing with ID '$id' not found.");
         }
-        $merchant = User::findOrFail($listing->user_id);
+        try {
+            $merchant = User::findOrFail($listing->user_id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Merchant with ID '$id' not found.");
+        }
+        
         $availableCopies = Copy::where('listing_id', $listing->id)->whereNull('cart_id')->get();
         $ratings = Rating::where('listing_id', $listing->id)->get();
         $user_rating = null;
@@ -159,7 +165,13 @@ class ListingController extends Controller
     }
 
     public function edit($id) {
-        $listing = Listing::findOrFail($id);
+        try {
+            $listing = Listing::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Listing with ID '$id' not found.");
+        }
+        
         return view('listings.edit', ['listing' => $listing, 'view' => 'listings.edit']);
     }
 
@@ -171,7 +183,13 @@ class ListingController extends Controller
             'category' => 'required|string|max:100',
             'image' => 'image|mimes:jpg,png,jpeg|max:2048'
         ]);
-        $listing = Listing::findOrFail($id);
+        try {
+            $listing = Listing::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Listing with ID '$id' not found.");
+        }
+        
         if ($request->file('image')) {
             if ($listing->image) {
                 Storage::disk('public')->delete($listing->image);
@@ -188,13 +206,25 @@ class ListingController extends Controller
     }
 
     public function destroy($id) {
-        $listing = Listing::findOrFail($id);
+        try {
+            $listing = Listing::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Listing with ID '$id' not found.");
+        }
+        
         $listing->delete();
         return redirect(route('user.profile.merchant.show', ['id' => Auth::user()->id]));
     }
 
     public function add($id) {
-        $listing = Listing::findOrFail($id);
+        try {
+            $listing = Listing::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Listing with ID '$id' not found.");
+        }
+        
         return view('listings.add-stock', ['listing' => $listing, 'view' => 'listings.add-stock']);
     }
 
@@ -202,6 +232,12 @@ class ListingController extends Controller
         $request->validate([
             'stock' => 'required|numeric|min:1'
         ]);
+        try {
+            $listing = Listing::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Listing with ID '$id' not found.");
+        }
         for ($i = 0; $i < $request->stock; $i++) {
             Copy::create([
                 'listing_id' => $id
@@ -211,12 +247,24 @@ class ListingController extends Controller
     }
 
     public function createRating($id) {
-        $listing = Listing::findOrFail($id);
+        try {
+            $listing = Listing::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Listing with ID '$id' not found.");
+        }
+        
         return view('ratings.create', ['listing' => $listing, 'view' => 'ratings.create']);
     }
 
     public function storeRating($id, Request $request) {
-        $listing = Listing::findOrFail($id);
+        try {
+            $listing = Listing::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            abort(404, "404 | Listing with ID '$id' not found.");
+        }
+        
         $request->validate([
             'rating' => 'required|numeric|min:1|max:5',
             'review' => 'string|nullable|max:1000'
